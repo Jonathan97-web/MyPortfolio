@@ -1,0 +1,1 @@
+web: gunicorn myportfoliopp4.wsgi
