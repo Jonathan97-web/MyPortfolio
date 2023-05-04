@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',
     'MyPortfolio_App',
+    'profiles',
 ]
 
 SITE_ID = 1
