@@ -9,6 +9,10 @@ body {
     color: #4A4A4F;
 }
 
+.main-header {
+    text-decoration: none;
+}
+
 .red-o {
     color: #E84610;
 }
@@ -140,10 +144,3 @@ body {
     background: transparent;
     border: none;
 }
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Sta
