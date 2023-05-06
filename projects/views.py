@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Project
+from .forms import CommentForm
 
 
 class ProjectList(generic.ListView):
@@ -10,22 +11,34 @@ class ProjectList(generic.ListView):
     paginate_by = 6
 
 
-class ProjectDetail(View):
+def ProjectDetail(request, id, slug):
+    template_name = 'project_detail.html'
+    project = get_object_or_404(Project, id=id)
+    comments = project.comments.filter(approved=True)
+    new_comment = None
+    liked = False
+    if project.likes.filter(id=request.user.id).exists():
+        liked = True
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
 
-    def get(self, request, id, slug, *args, **kwargs):
-        queryset = Project.objects.all()
-        project = get_object_or_404(queryset, id=id)
-        comments = project.comments.filter(approved=True).order_by('created_on')
-        liked = False
-        if project.likes.filter(id=self.request.user.id).exists():
-            liked = True
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.project = project
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
 
-        return render(
-            request,
-            "project_detail.html",
-            {
-                "project": project,
-                "comments": comments,
-                "liked": liked
-            },
-        )
+    return render(
+        request,
+        template_name,
+        {
+            "project": project,
+            "comments": comments,
+            "new_comment": new_comment,
+            "liked": liked,
+            "comment_form": comment_form,
+        })
