@@ -29,6 +29,7 @@ def ProjectDetail(request, id, slug):
             new_comment.project = project
             # Save the comment to the database
             new_comment.save()
+
     else:
         comment_form = CommentForm()
 
@@ -38,7 +39,7 @@ def ProjectDetail(request, id, slug):
         {
             "project": project,
             "comments": comments,
-            "new_comment": new_comment,
             "liked": liked,
+            "new_comment": new_comment,
             "comment_form": comment_form,
         })
