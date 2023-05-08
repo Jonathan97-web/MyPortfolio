@@ -4,26 +4,18 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 
 
-class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
+class UpdateUserForm(forms.ModelForm):
+    email = forms.EmailField(
+                              required=True
+                              )
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['email']
 
 
-# Create a UserUpdateForm to update a username and email
-class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+class UpdateProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'email', 'linkedin', 'github', 'portfolio']
-
-# Create a ProfileUpdateForm to update image.
-
-
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['image']
+        fields = ['first_name', 'last_name', 'intro']
