@@ -21,7 +21,7 @@
                         {% endif %}
                         <div class="image-flash">
                             <img class="" src="" alt="">
-                            <p class="author">Developer: {{ project.developer }}</p>
+                            <p class="author"><a class="link-info text-decoration-none" href="{% url 'profile_detail' project.developer %}">Developer: {{ project.developer }}</a></p>
                         </div>
                     </div>
                     <a href="{% url 'project_detail' project.id project.slug %}" class="post-link">
