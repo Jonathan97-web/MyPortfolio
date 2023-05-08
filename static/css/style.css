@@ -1,5 +1,14 @@
+html, body {
+    height: 100%;
+}
+
 body {
     background-color: #F9FAFC;
+}
+
+body > footer {
+    position: sticky;
+    top: 100vh;
 }
 
 .brand {
