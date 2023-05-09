@@ -27,7 +27,7 @@
         <div class="comments" style="padding: 10px;">
             <p class="fw-bold">
                 <span class="text-muted">
-                    {{ comment.created_on }}
+                    <a class="nav-link" href="{% url 'profile_detail' comment.name %}">{{ comment.name }} {{ comment.created_on }}</a>
                 </span>
             </p>
             {{ comment.body | linebreaks }}
