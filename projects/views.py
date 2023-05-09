@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
-from .models import Project
-from .forms import CommentForm
+from .models import Project, Comment
+from .forms import CommentForm, CreateProjectForm
+from django.contrib.auth.models import User
 
 
 class ProjectList(generic.ListView):
@@ -14,6 +15,7 @@ class ProjectList(generic.ListView):
 def ProjectDetail(request, id, slug):
     template_name = 'project_detail.html'
     project = get_object_or_404(Project, id=id)
+
     comments = project.comments.filter(approved=True)
     new_comment = None
     liked = False
@@ -23,11 +25,8 @@ def ProjectDetail(request, id, slug):
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
 
-            # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
-            # Assign the current post to the comment
             new_comment.project = project
-            # Save the comment to the database
             new_comment.save()
 
     else:
@@ -43,3 +42,24 @@ def ProjectDetail(request, id, slug):
             "new_comment": new_comment,
             "comment_form": comment_form,
         })
+
+
+def CreateProject(request):
+
+    context = {}
+
+    user = request.user
+    if not user.is_authenticated:
+        return redirect('account_signup')
+
+    form = CreateProjectForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        author = Project.objects.filter(developer=user).first()
+        obj.author = author
+        obj.save()
+        form = CreateProjectForm()
+
+    context['form'] = form
+
+    return render(request, 'project_create.html', context)
