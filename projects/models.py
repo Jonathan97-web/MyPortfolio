@@ -4,7 +4,6 @@ from cloudinary.models import CloudinaryField
 
 
 class Project(models.Model):
-
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     developer = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,7 +28,7 @@ class Comment(models.Model):
 
     project = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=80)
+    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
