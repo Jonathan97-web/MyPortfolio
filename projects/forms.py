@@ -6,11 +6,11 @@ from django import forms
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('email', 'body')
+        fields = ('body',)
 
 
 class CreateProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ('title', 'content', 'image')
+        fields = ('title', 'content', 'image', 'deployed_url', 'source_code')
