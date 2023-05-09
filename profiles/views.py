@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from django.urls import reverse
 from .models import Profile
 from .forms import UpdateProfileForm, UpdateUserForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Profile for the logged in user
@@ -41,3 +41,10 @@ def profile(request, id):
 def view_profile(request, username):
     user = User.objects.get(username=username)
     return render(request, 'profile_detail.html', {"user": user})
+
+
+# Create Profile When New User Signs Up
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
