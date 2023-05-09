@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.utils.text import slugify
 from .models import Project, Comment
 from .forms import CommentForm, CreateProjectForm
-from django.contrib.auth.models import User
 
 
 class ProjectList(generic.ListView):
@@ -26,8 +29,10 @@ def ProjectDetail(request, id, slug):
         if comment_form.is_valid():
 
             new_comment = comment_form.save(commit=False)
+            new_comment.name = request.user
             new_comment.project = project
             new_comment.save()
+            messages.success(request, 'Comment has been successfully made')
 
     else:
         comment_form = CommentForm()
@@ -44,22 +49,90 @@ def ProjectDetail(request, id, slug):
         })
 
 
+@login_required
 def CreateProject(request):
-
-    context = {}
-
-    user = request.user
-    if not user.is_authenticated:
-        return redirect('account_signup')
-
     form = CreateProjectForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        author = Project.objects.filter(developer=user).first()
-        obj.author = author
-        obj.save()
-        form = CreateProjectForm()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.developer = request.user
+            form.instance.slug = slugify(request.POST.get('title'))
+            form.save()
+            messages.success(request, 'project successfully saved')
+        return redirect('home')
 
-    context['form'] = form
+    context = {
+        'form': form,
+    }
 
     return render(request, 'project_create.html', context)
+
+
+@login_required
+def edit_project(request, id):
+    project = get_object_or_404(Project, id=id)
+    if project.developer != request.user:
+        messages.error(request, 'access denied, this is not your project')
+        return redirect('home')
+    if request.method == 'POST':
+        form = CreateProjectForm(request.POST or None, request.FILES or None, instance=project)
+        if form.is_valid():
+            form.instance.developer = request.user
+            form.instance.slug = slugify(request.POST.get('title'))
+            form.save()
+            messages.success(request, 'project successfully edited')
+            return redirect('project_detail', project.id, project.slug)
+        messages.error(request, 'An error has occured, please try again.')
+
+    form = CreateProjectForm(instance=project)
+    context = {
+        'form': form,
+        'project': project,
+    }
+
+    return render(request, 'project_edit.html', context)
+
+
+@login_required
+def delete_project(request, id):
+    project = get_object_or_404(Project, id=id)
+    if project.developer != request.user:
+        messages.error(request, 'access denied, this is not your project')
+        return redirect('home')
+    project.delete()
+    messages.success(request, 'project successfully deleted')
+    return redirect('home')
+
+
+@login_required
+def edit_comment(request, id):
+    comment = get_object_or_404(Comment, id=id)
+    if comment.name != request.user:
+        messages.error(request, 'access denied, this is not your comment')
+        return redirect('home')
+    if request.method == 'POST':
+        form = CommentForm(request.POST or None, instance=comment)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'comment successfully edited')
+            return redirect('project_detail', comment.project.id, comment.project.slug)
+        messages.error(request, 'An error has occured, please try again.')
+
+    form = CommentForm(instance=comment)
+    context = {
+        'form': form,
+        'comment': comment,
+    }
+
+    return render(request, 'comment_edit.html', context)
+
+
+@login_required
+def delete_comment(request, id):
+    comment = get_object_or_404(Comment, id=id)
+    project = get_object_or_404(Project, id=comment.project.id)
+    if comment.name != request.user:
+        messages.error(request, 'access denied, this is not your comment')
+        return redirect('home')
+    comment.delete()
+    messages.success(request, 'comment successfully deleted')
+    return redirect('project_detail', project.id, project.slug)
