@@ -1,50 +1,109 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <h1 class="post-title">{% block title %} {{ project.title }} {% endblock title %}</h1>
-                <p class="post-subtitle">{{ project.developer }} | {{ project.created_on }}</p>
-                <p class="justify-content-center d-flex">{{ project.content | safe }}</p>
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-md-6 masthead-text">
+        <h1 class="post-title">{% block title %} {{ project.title }} {% endblock title %}</h1>
+        <p class="post-subtitle"><a class="link-info text-decoration-none"
+            href="{% url 'profile_detail' project.developer %}">{{ project.developer }}</a> | {{ project.created_on }}
+        </p>
+        {% if project.developer == request.user %}
+        <p class="post-subtitle">
+          <a href="{% url 'project_edit' project.id %}">Edit</a> |
+          <a href="#" data-bs-toggle="modal" data-bs-target="#modal-{{ project.id }}">Delete</a>
+        </p>
+        <div class="modal text-dark" id="modal-{{ project.id }}" tabindex="-1"
+          aria-labelledby="modallabel-{{ project.id }}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modallabel-{{ project.id }}">Delete Project</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete this project?
+                <br>
+                <small class="text-muted">This actions is permanent and cannot be undone.
+                  <br>
+                  This will also delete related comments</small>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                <a href="{% url 'project_delete' project.id %}" class="btn btn-success">Delete</a>
+              </div>
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                {% if "placeholder" in project.image.url %}
-                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
-                {% else %}
-                <img src=" {{ project.image.url }}" width="100%">
-                {% endif %}
-            </div>
+          </div>
         </div>
+        {% endif %}
+        <p class="justify-content-center d-flex">{{ project.content | safe }}</p>
+      </div>
+      <div class="d-none d-md-block col-md-6 masthead-image">
+        {% if "placeholder" in project.image.url %}
+        <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+        {% else %}
+        <img src=" {{ project.image.url }}" width="100%">
+        {% endif %}
+      </div>
     </div>
+  </div>
 </div>
 <div class="col-md-8 card mb-4 mt-3">
-    <div class="card-body">
+  <div class="card-body">
 
-        <h2>{{ comments.count }} comments</h2>
+    <h2>{{ comments.count }} comment{{ comments.count|pluralize }}</h2>
 
-        {% for comment in comments %}
-        <div class="comments" style="padding: 10px;">
-            <p class="fw-bold">
-                <span class="text-muted">
-                    <a class="nav-link" href="{% url 'profile_detail' comment.name %}">{{ comment.name }} {{ comment.created_on }}</a>
-                </span>
-            </p>
-            {{ comment.body | linebreaks }}
+    {% for comment in comments %}
+    <div class="comments p-2 {% cycle 'bg-danger' 'bg-success' %}">
+      <p class="fw-bold">
+        <span class="text-muted">
+          <a class="nav-link" href="{% url 'profile_detail' comment.name %}">{{ comment.name }}</a>
+          {{ comment.created_on }}
+        </span>
+      </p>
+      {% if comment.name == request.user %}
+      <p>
+        <a href="{% url 'comment_edit' comment.id %}">Edit</a> |
+        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-comment-{{ comment.id }}">Delete</a>
+      </p>
+      <div class="modal text-dark" id="modal-comment-{{ comment.id }}" tabindex="-1"
+        aria-labelledby="modalcommentlabel-{{ comment.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalcommmentlabel-{{ comment.id }}">Delete Comment</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete this comment?
+              <br>
+              <small class="text-muted">This actions is permanent and cannot be undone.
+              </small>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+              <a href="{% url 'comment_delete' comment.id %}" class="btn btn-success">Delete</a>
+            </div>
+          </div>
         </div>
-        {% endfor %}
+      </div>
+      {% endif %}
+      {{ comment.body | linebreaks }}
     </div>
+    <hr class="w-25">
+    {% endfor %}
+  </div>
 </div>
 {% if user.is_authenticated %}
 <div class="col-md-8 card mb-4  mt-3 ">
-    <div class="card-body">
-      <h3>Leave a comment</h3>
-      <form method="post" style="margin-top: 1.3em;">
-        {{ comment_form.as_p }}
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-      </form>
-    </div>
+  <div class="card-body">
+    <h3>Leave a comment</h3>
+    <form method="post" style="margin-top: 1.3em;">
+      {{ comment_form.as_p }}
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+    </form>
+  </div>
 </div>
 {% else %}
 <p class="card-text">Please login to comment</p>
