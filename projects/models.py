@@ -30,7 +30,6 @@ class Comment(models.Model):
         Project, on_delete=models.CASCADE, related_name='comments')
     name = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='author')
-    email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
