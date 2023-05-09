@@ -3,15 +3,47 @@
 {% block content %}
 
 <div class="container d-flex justify-content-center">
-    <div class="card">
-        <div class="card-body">
-          <legend class="border-bottom mb-4">User information</legend>
-          <p class="">username: {{ user.username }}</p>
-          <p class="">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
-          <p class="">Email: {{ user.email }}</p>
-          <img class="" src="{{ user.profile.image.url }}" alt="img" height="200px" width="200px">
-        </div>
+  <div class="row">
+    <div class="col-6 mx-auto card">
+      <div class="card-body">
+        <legend class="border-bottom mb-4">User information</legend>
+        <p class="">username: {{ user.username }}</p>
+        <p class="">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
+        <p class="">Email: {{ user.email }}</p>
+        <img class="img-fluid w-25" src="{{ user.profile.image.url }}" alt="img">
+      </div>
     </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    {% for project in projects %}
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card border shadow m-3">
+        <a href="{% url 'project_detail' project.id project.slug %}">
+          {% if "placeholder" in project.image.url %}
+          <img class="card-img-top img-fluid w-100"
+            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" alt="{{ project.title }}">
+          {% else %}
+          <img class="card-img-top img-fluid w-100" src="{{ project.image.url }}" alt="{{ project.title }}">
+          {% endif %}
+          <div class="card-body">
+            <p class="card-text">
+              {{ project.title }}
+              {{ project.developer }}
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 mx-auto">
+      <h3 class="text-danger">
+        No projects found for {{ user.username }}.
+      </h3>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 
 
