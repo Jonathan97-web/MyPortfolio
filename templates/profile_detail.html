@@ -4,12 +4,12 @@
 
 <div class="container d-flex justify-content-center">
     <div class="card">
-        <img class="img-fluid" src="{{ profiles.profile.image.url }}" alt="">
         <div class="card-body">
           <legend class="border-bottom mb-4">User information</legend>
           <p class="">username: {{ user.username }}</p>
           <p class="">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
           <p class="">Email: {{ user.email }}</p>
+          <img class="" src="{{ user.profile.image.url }}" alt="img" height="200px" width="200px">
         </div>
     </div>
 </div>
