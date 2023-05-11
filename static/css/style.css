@@ -3,13 +3,15 @@ html, body {
 }
 
 body {
-    background-color: #F9FAFC;
+    background: white;
 }
 
 body > footer {
     position: sticky;
     top: 100vh;
 }
+
+
 
 .brand {
     font-family: Lato, sans-serif;
@@ -47,17 +49,7 @@ body > footer {
     background-color: transparent;
 }
 
-.image-container {
-    position: relative;
-}
 
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #23BBBB;
-}
 
 .author {
     color: white;
