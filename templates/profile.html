@@ -3,39 +3,38 @@
 
 {% block content %}
 
-  <div class="mx-auto col-10 col-md-8 col-lg-2">
-    <div class="row">
-    <legend class="border-bottom mb-4">User information</legend>
-    <p class="">username: {{ user.username }}</p>
-    <p class="">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
-    <p class="">Email: {{ user.email }}</p>
-    <form class="d-flex" method="POST" enctype="multipart/form-data">
+  <div class="container d-flex">
+  <div class="row d-flex mx-auto">
+  <div class="col-12 d-flex flex-column">
+    <div class="container mx-auto">
+    <legend class="border-bottom mb-4 mt-2 border-top text-center">{{ user.username|capfirst }}'s information</legend>
+    <p class="text-center">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
+    <p class="text-center">Email: {{ user.email }}</p>
+    <form class="text-center" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-      <fieldset class="form-group">
         {{ u_form | crispy }}
-        <legend class="border-bottom mb-4">Profile information:</legend>
+        <legend class="border-bottom mb-4 text-center">Profile information:</legend>
         {{ p_form | crispy }}
-          <button class="btn btn-outline-info m-2 w-50" type="submit">Update</button>
-      </fieldset>
-      <hr>
-  </div>
+          <button class="btn btn-outline-info m-2 w-50 mb-5" type="submit">Update</button>
   </form>
+</div>
+</div>
 </div>
 </div>
 <div class="container">
   <div class="row">
-    <legend class="border-bottom mb-4">{{ user.username }}'s projects:</legend>
+    <legend class="border-bottom mb-4 text-center">{{ user.username|capfirst }}'s projects:</legend>
     {% for project in projects %}
     <div class="col-12 col-md-4 col-lg-4">
       <div class="card border shadow m-3">
         <a href="{% url 'project_detail' project.id project.slug %}">
           {% if "placeholder" in project.image.url %}
-          <img class="card-img-top img-fluid w-100"
+          <img class="card-img-top img-fluid w-100 bg-dark"
             src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" alt="{{ project.title }}">
           {% else %}
-          <img class="card-img-top img-fluid w-100" src="{{ project.image.url }}" alt="{{ project.title }}">
+          <img class="card-img-top img-fluid w-100 bg-dark" src="{{ project.image.url }}" alt="{{ project.title }}">
           {% endif %}
-          <div class="card-body">
+          <div class="card-body bg-dark rounded-3">
             <p class="card-text">
               {{ project.title }}
               {{ project.developer }}
