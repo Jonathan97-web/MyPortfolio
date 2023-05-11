@@ -3,35 +3,30 @@
 
 {% block content %}
 
-<div class="container d-flex justify-content-center">
-  <div class="card">
-    <img class="img-fluid" src="{{ profiles.profile.image.url }}" alt="">
-    <div class="card-body">
-      <legend class="border-bottom mb-4">User information</legend>
-      <p class="">username: {{ user.username }}</p>
-      <p class="">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
-      <p class="">Email: {{ user.email }}</p>
-    </div>
+  <div class="mx-auto col-10 col-md-8 col-lg-2">
+    <div class="row">
+    <legend class="border-bottom mb-4">User information</legend>
+    <p class="">username: {{ user.username }}</p>
+    <p class="">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
+    <p class="">Email: {{ user.email }}</p>
+    <form class="d-flex" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        {{ u_form | crispy }}
+        <legend class="border-bottom mb-4">Profile information:</legend>
+        {{ p_form | crispy }}
+          <button class="btn btn-outline-info m-2 w-50" type="submit">Update</button>
+      </fieldset>
+      <hr>
   </div>
-</div>
-<div class="container d-flex justify-content-center">
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      {{ u_form | crispy }}
-      <legend class="border-bottom mb-4">Profile information:</legend>
-      {{ p_form | crispy }}
-    </fieldset>
-    <hr>
-    <div class="form-group">
-      <button class="btn btn-outline-info" type="submit">Update</button>
-    </div>
   </form>
+</div>
 </div>
 <div class="container">
   <div class="row">
+    <legend class="border-bottom mb-4">{{ user.username }}'s projects:</legend>
     {% for project in projects %}
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-4 col-lg-4">
       <div class="card border shadow m-3">
         <a href="{% url 'project_detail' project.id project.slug %}">
           {% if "placeholder" in project.image.url %}
