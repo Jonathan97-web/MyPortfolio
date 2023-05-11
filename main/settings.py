@@ -152,12 +152,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'  # noqa
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
-    os.path.join(BASE_DIR, 'static/css'),
 )
 
 MEDIA_URL = '/media/'
