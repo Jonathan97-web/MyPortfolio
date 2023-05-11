@@ -4,7 +4,7 @@
 
 <div class="container d-flex justify-content-center">
   <div class="row">
-    <div class="col-6 mx-auto card">
+    <div class="col-12 mx-auto card">
       <div class="card-body">
         <legend class="border-bottom mb-4">User information</legend>
         <p class="">username: {{ user.username }}</p>
@@ -17,6 +17,7 @@
 </div>
 <div class="container">
   <div class="row">
+    <legend class="border-bottom mb-4">{{ user.username }}'s projects:</legend>
     {% for project in projects %}
     <div class="col-12 col-md-6 col-lg-3">
       <div class="card border shadow m-3">
