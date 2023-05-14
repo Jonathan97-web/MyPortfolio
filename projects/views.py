@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils.text import slugify
+from django.template import RequestContext
 from .models import Project, Comment
 from .forms import CommentForm, CreateProjectForm
 
@@ -136,3 +137,10 @@ def delete_comment(request, id):
     comment.delete()
     messages.success(request, 'comment successfully deleted')
     return redirect('project_detail', project.id, project.slug)
+
+
+# 404 template redirection
+def handler404(request, exception, template_name="404.html"):
+    response = RequestContext(template_name)
+    response.status_code = 404
+    return response
