@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block content %}
+{% load crispy_forms_tags %}
 
 <div class="masthead">
   <div class="container">
@@ -36,7 +37,7 @@
           </div>
         </div>
         {% endif %}
-        <p class="justify-content-center d-flex">{{ project.content | safe }}</p>
+        <h3 class="text-center">{{ project.content | safe }}</h3>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
         {% if "placeholder" in project.image.url %}
@@ -48,7 +49,7 @@
     </div>
   </div>
 </div>
-<div class="col-md-8 card mb-4 mt-3">
+<div class="col-12 card mb-4 mt-3">
   <div class="card-body">
 
     <h2>{{ comments.count }} comment{{ comments.count|pluralize }}</h2>
@@ -95,16 +96,18 @@
   </div>
 </div>
 {% if user.is_authenticated %}
-<div class="col-md-8 card mb-4  mt-3 ">
-  <div class="card-body">
+<div class="container-fluid">
+<div class="row">
+  <div class="col-12 mb-3">
     <h3>Leave a comment</h3>
-    <form method="post" style="margin-top: 1.3em;">
-      {{ comment_form.as_p }}
+    <form method="post" class="small">
       {% csrf_token %}
-      <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+      {{ comment_form | crispy }}
+      <button type="submit" class="btn btn-primary btn-lg">Submit</button>
     </form>
   </div>
 </div>
+  </div>
 {% else %}
 <p class="card-text">Please login to comment</p>
 {% endif %}
