@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils.text import slugify
-from django.template import RequestContext
 from .models import Project, Comment
 from .forms import CommentForm, CreateProjectForm
 
