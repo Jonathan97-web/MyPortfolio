@@ -140,7 +140,3 @@ def delete_comment(request, id):
 
 
 # 404 template redirection
-def handler404(request, exception, template_name="404.html"):
-    response = RequestContext(template_name)
-    response.status_code = 404
-    return response
