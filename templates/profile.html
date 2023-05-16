@@ -3,10 +3,31 @@
 
 {% block content %}
 
-  <div class="container d-flex">
-  <div class="row d-flex mx-auto">
+ <!-- Profile image -->
+ {% if "placeholder" in user.profile.image.url %}
+ <div class="col-12 col-md-2 d-flex mx-auto">
+  <div class="card border shadow m-3">
+    <div class="card-body bg-dark rounded-3">
+      <img class="card-img-top img-fluid w-100"
+      src="../static/img/blank_profile.webp" alt="{{ user.profile }}">
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="col-12 col-md-2 d-flex mx-auto">
+  <div class="card border shadow m-3">
+    <div class="card-body bg-dark rounded-3">
+    <img class="card-img img-fluid w-100 bg-dark " src="{{ user.profile.image.url }}" alt="">
+    </div>
+  </div>
+</div>
+{% endif %}
+ <!-- End of profile image -->
+
+  <!-- User and profile information -->
+  <div class="container">
+  <div class="row mx-auto">
   <div class="col-12 d-flex flex-column">
-    <div class="container mx-auto">
     <legend class="border-bottom mb-4 mt-2 border-top text-center">{{ user.username|capfirst }}'s information</legend>
     <p class="text-center">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
     <p class="text-center">Email: {{ user.email }}</p>
@@ -20,8 +41,10 @@
 </div>
 </div>
 </div>
-</div>
-<div class="container">
+<!-- End of user and profile information -->
+
+ <!-- User projects information -->
+<div class="container-fluid">
   <div class="row">
     <legend class="border-bottom mb-4 text-center">{{ user.username|capfirst }}'s projects:</legend>
     {% for project in projects %}
@@ -52,6 +75,7 @@
     {% endfor %}
   </div>
 </div>
+ <!-- End of User projects information -->
 
 
 {% endblock content %}
