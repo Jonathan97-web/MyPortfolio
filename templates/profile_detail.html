@@ -1,10 +1,8 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-
-
+{% if request.user.is_authenticated %}
 <!-- Profile image -->
-{% if "placeholder" in user.profile.image.url %}
+  {% if "placeholder" in user.profile.image.url %}
 <div class="col-12 col-md-2 d-flex mx-auto">
   <div class="card border shadow m-3">
     <div class="card-body bg-dark rounded-3">
@@ -12,7 +10,7 @@
     </div>
   </div>
 </div>
-{% else %}
+  {% else %}
 <div class="col-12 col-md-2 d-flex mx-auto">
   <div class="card border shadow m-3">
     <div class="card-body bg-dark rounded-3">
@@ -20,10 +18,8 @@
     </div>
   </div>
 </div>
-{% endif %}
+  {% endif %}
 <!-- End of profile image -->
-
-
 <div class="container d-flex justify-content-center">
   <div class="row">
     <div class="col-12 mx-auto card">
@@ -43,19 +39,20 @@
     <div class="col-12 col-md-6 col-lg-4">
       <div class="card border shadow m-3">
         <div class="card-body rounded-3 bg-dark">
-        <a href="{% url 'project_detail' project.id project.slug %}">
-          {% if "placeholder" in project.image.url %}
-          <img class="card-img-top img-fluid w-100 bg-dark"
-            src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg" alt="{{ project.title }}">
-          {% else %}
-          <img class="card-img-top img-fluid w-100 bg-dark" src="{{ project.image.url }}" alt="{{ project.title }}">
-          {% endif %}
-          <div class="card-body bg-dark rounded-3">
-            <h3 class="text-decoration-none text-white">
-              {{ project.title }}
-            </h3>
-          </div>
-          </div>
+          <a href="{% url 'project_detail' project.id project.slug %}">
+            {% if "placeholder" in project.image.url %}
+            <img class="card-img-top img-fluid w-100 bg-dark"
+              src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg"
+              alt="{{ project.title }}">
+            {% else %}
+            <img class="card-img-top img-fluid w-100 bg-dark" src="{{ project.image.url }}" alt="{{ project.title }}">
+            {% endif %}
+            <div class="card-body bg-dark rounded-3">
+              <h3 class="text-decoration-none text-white">
+                {{ project.title }}
+              </h3>
+            </div>
+        </div>
         </a>
       </div>
     </div>
@@ -68,6 +65,10 @@
     {% endfor %}
   </div>
 </div>
-
+    {% else %}
+    <div class="d-flex justify-content-center">
+      <h1>Please <a class="text-decoration-none" href="{% url 'account_login' %}">Login</a> to see profiles</h1>
+      </div>
+    {% endif %}
 
 {% endblock content %}
