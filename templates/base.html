@@ -11,7 +11,7 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Document</title>
+    <title>MyPortfolio</title>
 </head>
 
 <body>
@@ -59,25 +59,25 @@
                             <a href="{% url 'account_signup' %}" class="nav-link"
                                 aria-label="Takes you to the user register page.">Sign Up</a>
                         </li>
-
+                        </ul>
                         {% endif %}
                 </div>
-                <div class="container-fluid d-flex justify-content-center d-lg-none gap-2">
+                <div class="container-fluid d-flex justify-content-center d-lg-none">
+                    <ul class="d-flex gap-2">
                     <li class="list-unstyled">
-                        <a href="https://www.github.com/Jonathan97-web" target="blank" class="nav-link mb-2"><i
-                                class="fa-brands fa-github fa-2xl" style="color: #ffffff;"></i></a>
+                        <a href="https://www.github.com/Jonathan97-web" target="_blank" class="nav-link text-white"><i
+                                class="fa-brands fa-github fa-2xl"></i></a>
                     </li>
                     <li class="list-unstyled">
                         <a href="https://www.linkedin.com/in/jonathan-zakrisson-23187a260/" target="_blank"
-                            class="nav-link mb-2"><i class="fa-brands fa-linkedin fa-2xl"
-                                style="color: #ffffff;"></i></a>
+                            class="nav-link text-white"><i class="fa-brands fa-linkedin fa-2xl"></i></a>
                     </li>
-                    <hr>
+                </ul>
                 </div>
                 <div class="container-fluid d-flex justify-content-center border-top d-lg-none">
                     <h3>MyPortfolio 2023</h3>
                 </div>
-                </ul>
+                
             </div>
         </div>
 
@@ -101,11 +101,19 @@
     </main>
 
 
-    <footer class="footer bg-dark">
-        <div class="container-fluid d-flex justify-content-center">
-            <h3 class="h3 text-white">MyPortfolio 2023</h3>
+    <footer class="container-fluid bg-dark">
+                <div class="d-none d-lg-flex justify-content-between">
+                    <h2 class="text-white h2">MyPortfolio 2023</h2>
+                    <div>
+                        <h2 class="text-white">Created by: Jonathan Zakrisson</h2>
+                    </div>
+                    <div class="d-none d-lg-flex align-items-center gap-2">
+                    <a href="https://www.github.com/Jonathan97-web" target="blank" class="text-white"><i
+                        class="fa-brands fa-github fa-2xl"></i></a>
+                        <a href="https://www.linkedin.com/in/jonathan-zakrisson-23187a260/" target="_blank"
+                        class="text-white"><i class="fa-brands fa-linkedin fa-2xl"></i></a>
+                    </div>
         </div>
-
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
