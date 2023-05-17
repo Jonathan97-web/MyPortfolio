@@ -12,6 +12,14 @@ body > footer {
 }
 
 
+.h3-dev {
+    color: white;
+}
+
+.h3-dev:hover {
+    color: red;
+}
+
 
 .brand {
     font-family: Lato, sans-serif;
@@ -62,7 +70,6 @@ body > footer {
     overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
     width: 100%;
 }
 
