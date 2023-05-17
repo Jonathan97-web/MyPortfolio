@@ -2,54 +2,54 @@
 
 {% block content %}
 
-
 <div class="container-fluid">
     <div class="row">
         {% for project in project_list %}
-       <div class="col-12 col-md-4 mx-auto">
-        <div class="card mt-5">
-            <div class="card-body bg-dark rounded-3">
-                {% if "placeholder" in project.image.url %}
-                <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top rounded-3"
-                        src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg" alt=""></a>
-                {% else %}
-                <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top"
-                        src=" {{ project.image.url }}" alt=""></a>
-                {% endif %}
-                <div class="bg-dark rounded-3 image-text d-flex">
-                    <h3 class="author mx-auto"><a class="text-decoration-none h3-dev"
-                            href="{% url 'profile_detail' project.developer %}">Developer:
-                            {{ project.developer }}</a></h3>
+        <div class="col-12 col-md-4 mx-auto">
+            <div class="card mt-5">
+                <div class="card-body bg-dark rounded-3">
+                    {% if "placeholder" in project.image.url %}
+                    <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top rounded-3"
+                            src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg"
+                            alt=""></a>
+                    {% else %}
+                    <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top"
+                            src=" {{ project.image.url }}" alt=""></a>
+                    {% endif %}
+                    <div class="bg-dark rounded-3 image-text d-flex">
+                        <h3 class="author mx-auto"><a class="text-decoration-none h3-dev"
+                                href="{% url 'profile_detail' project.developer %}">Developer:
+                                {{ project.developer }}</a></h3>
+                    </div>
+                </div>
+                <div class="container-fluid mx-auto">
+                    <a href="{% url 'project_detail' project.id project.slug %}" class="post-link">
+                        <h2 class="card-title">{{ project.title }}</h2>
+                    </a>
+                    <hr />
+                    <p class="card-text text-muted h6 mb-3">{{ project.created_on }}
+                        <i class="far fa-heart"></i>{{ project.number_of_likes }}</p>
                 </div>
             </div>
-            <div class="container-fluid mx-auto">
-                <a href="{% url 'project_detail' project.id project.slug %}" class="post-link">
-                    <h2 class="card-title">{{ project.title }}</h2>
-                </a>
-                <hr/>
-                <p class="card-text text-muted h6 mb-3">{{ project.created_on }}
-                    <i class="far fa-heart"></i>{{ project.number_of_likes }}</p>
         </div>
+        {% if forloop.counter|divisibleby:3 %}
     </div>
-</div>
-    {% if forloop.counter|divisibleby:3 %}
-</div> 
-<div class="row">
+    <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     {% endif %}
-    {% endfor %}
-</div>
-{% if is_paginated %}
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-        {% endif %}
-        {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-        {% endif %}
-    </ul>
-</nav>
-{% endif %}
 </div>
 
 {%endblock%}

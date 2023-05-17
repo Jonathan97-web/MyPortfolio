@@ -1,13 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 {% load crispy_forms_tags %}
 
+
+{% if user.is_authenticated %}
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
       <div class="col-md-6 masthead-text">
         <h1 class="post-title">{% block title %} {{ project.title }} {% endblock title %}</h1>
         <p class="post-subtitle"><a class="link-info text-decoration-none"
-            href="{% url 'profile_detail' project.developer %}">{{ project.developer }}</a> | {{ project.created_on }}
+            href="{% url 'profile_detail' project.developer %}">{{ project.developer }}</a> | {{ project.created_on }} 
+                  <i class="far fa-heart"></i>{{ project.number_of_likes }}
         </p>
         {% if project.developer == request.user %}
         <p class="post-subtitle">
@@ -41,12 +44,16 @@
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
         {% if "placeholder" in project.image.url %}
-        <img src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg" width="100%">
+        <img
+          src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg"
+          width="100%">
         {% else %}
         <img src=" {{ project.image.url }}" width="100%">
         {% endif %}
+        
       </div>
     </div>
+    
   </div>
 </div>
 <div class="col-12 card mb-4 mt-3">
@@ -96,22 +103,26 @@
     {% endfor %}
   </div>
 </div>
-{% if user.is_authenticated %}
+  {% if user.is_authenticated %}
 <div class="container-fluid">
-<div class="row">
-  <div class="col-12 mb-3">
-    <h3>Leave a comment</h3>
-    <form method="post" class="small">
-      {% csrf_token %}
-      {{ comment_form | crispy }}
-      <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-    </form>
+  <div class="row">
+    <div class="col-12 mb-3">
+      <h3>Leave a comment</h3>
+      <form method="post" class="small">
+        {% csrf_token %}
+        {{ comment_form | crispy }}
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+      </form>
+    </div>
   </div>
 </div>
-  </div>
+  {% else %}
+  <p class="card-text">Please login to comment</p>
+  {% endif %}
+
 {% else %}
-<p class="card-text">Please login to comment</p>
+<div class="d-flex justify-content-center">
+<h1>Please <a class="text-decoration-none" href="{% url 'account_login' %}">Login</a> to see posts</h1>
+</div>
 {% endif %}
-
-
 {% endblock content %}

@@ -1,7 +1,5 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 {% load crispy_forms_tags %}
-
-{% block content %}
 
 <!-- Profile image -->
 {% if "placeholder" in user.profile.image.url %}
@@ -76,6 +74,5 @@
   </div>
 </div>
 <!-- End of User projects information -->
-
 
 {% endblock content %}
