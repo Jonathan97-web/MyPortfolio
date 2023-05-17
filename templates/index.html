@@ -11,13 +11,13 @@
             <div class="card-body bg-dark rounded-3">
                 {% if "placeholder" in project.image.url %}
                 <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top rounded-3"
-                        src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" alt=""></a>
+                        src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg" alt=""></a>
                 {% else %}
                 <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top"
                         src=" {{ project.image.url }}" alt=""></a>
                 {% endif %}
                 <div class="bg-dark rounded-3 image-text d-flex">
-                    <h3 class="author mx-auto"><a class="text-decoration-none text-white"
+                    <h3 class="author mx-auto"><a class="text-decoration-none h3-dev"
                             href="{% url 'profile_detail' project.developer %}">Developer:
                             {{ project.developer }}</a></h3>
                 </div>
@@ -27,7 +27,7 @@
                     <h2 class="card-title">{{ project.title }}</h2>
                 </a>
                 <hr/>
-                <p class="card-text text-muted h6">{{ project.created_on }}
+                <p class="card-text text-muted h6 mb-3">{{ project.created_on }}
                     <i class="far fa-heart"></i>{{ project.number_of_likes }}</p>
         </div>
     </div>
