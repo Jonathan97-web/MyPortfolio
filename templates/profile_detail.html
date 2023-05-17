@@ -3,13 +3,12 @@
 {% block content %}
 
 
- <!-- Profile image -->
- {% if "placeholder" in user.profile.image.url %}
- <div class="col-12 col-md-2 d-flex mx-auto">
+<!-- Profile image -->
+{% if "placeholder" in user.profile.image.url %}
+<div class="col-12 col-md-2 d-flex mx-auto">
   <div class="card border shadow m-3">
     <div class="card-body bg-dark rounded-3">
-      <img class="card-img-top img-fluid w-100"
-      src="../static/img/blank_profile.webp" alt="{{ user.profile }}">
+      <img class="card-img-top img-fluid w-100" src="../static/img/blank_profile.webp" alt="{{ user.profile }}">
     </div>
   </div>
 </div>
@@ -17,12 +16,12 @@
 <div class="col-12 col-md-2 d-flex mx-auto">
   <div class="card border shadow m-3">
     <div class="card-body bg-dark rounded-3">
-    <img class="card-img img-fluid w-100 bg-dark " src="{{ user.profile.image.url }}" alt="">
+      <img class="card-img img-fluid w-100 bg-dark " src="{{ user.profile.image.url }}" alt="">
     </div>
   </div>
 </div>
 {% endif %}
- <!-- End of profile image -->
+<!-- End of profile image -->
 
 
 <div class="container d-flex justify-content-center">
@@ -39,22 +38,23 @@
 </div>
 <div class="container">
   <div class="row">
-    <legend class="border-bottom mb-4">{{ user.username }}'s projects:</legend>
+    <legend class="border-bottom mb-4 text-center">{{ user.username|capfirst }}'s projects:</legend>
     {% for project in projects %}
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
       <div class="card border shadow m-3">
+        <div class="card-body rounded-3 bg-dark">
         <a href="{% url 'project_detail' project.id project.slug %}">
           {% if "placeholder" in project.image.url %}
-          <img class="card-img-top img-fluid w-100"
-            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" alt="{{ project.title }}">
+          <img class="card-img-top img-fluid w-100 bg-dark"
+            src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg" alt="{{ project.title }}">
           {% else %}
-          <img class="card-img-top img-fluid w-100" src="{{ project.image.url }}" alt="{{ project.title }}">
+          <img class="card-img-top img-fluid w-100 bg-dark" src="{{ project.image.url }}" alt="{{ project.title }}">
           {% endif %}
-          <div class="card-body">
-            <p class="card-text">
+          <div class="card-body bg-dark rounded-3">
+            <h3 class="text-decoration-none text-white">
               {{ project.title }}
-              {{ project.developer }}
-            </p>
+            </h3>
+          </div>
           </div>
         </a>
       </div>
