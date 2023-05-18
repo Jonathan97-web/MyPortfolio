@@ -1,22 +1,34 @@
 {% extends 'base.html' %} {% block content %}
 {% load crispy_forms_tags %}
 
-
+<!-- Masthead and image for masthead -->
 {% if user.is_authenticated %}
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
       <div class="col-md-6 masthead-text">
         <h1 class="post-title">{% block title %} {{ project.title }} {% endblock title %}</h1>
-        <p class="post-subtitle"><a class="link-info text-decoration-none"
-            href="{% url 'profile_detail' project.developer %}">{{ project.developer }}</a> | {{ project.created_on }} 
-                  <i class="far fa-heart"></i>{{ project.number_of_likes }}
+        <p class="post-subtitle"><a class=" link-comment-white text-decoration-none"
+            href="{% url 'profile_detail' project.developer %}">{{ project.developer | capfirst }}</a> | {{ project.created_on }} 
         </p>
+        <!-- Likes form -->
+        <form class="m-4" action="{% url 'project_like' project.id project.slug %}" method="POST"> {{ project.user}}
+          {% csrf_token %}
+          {% if liked %}
+          <button type="submit" name="project_id" value="{{project.id}}" class="btn-like"><i class="fas fa-heart"></i></button> {{ project.number_of_likes }}
+          {% else %}
+          <button type="submit" name="project_id" value="{{project.id}}" class="btn-like"><i class="far fa-heart"></i></button> {{ project.number_of_likes }}
+          {% endif %}
+      </form>
+      <!-- End of likes form -->
+      <!-- Edit and delete project buttons -->
         {% if project.developer == request.user %}
         <p class="post-subtitle">
-          <a href="{% url 'project_edit' project.id %}">Edit</a> |
-          <a href="#" data-bs-toggle="modal" data-bs-target="#modal-{{ project.id }}">Delete</a>
+          <a class="link-comment-white" href="{% url 'project_edit' project.id %}">Edit</a> |
+          <a class="link-comment-white" href="#" data-bs-toggle="modal" data-bs-target="#modal-{{ project.id }}">Delete</a>
         </p>
+        <!-- End of edit and delete project buttons -->
+        <!-- Modal for deleting the project -->
         <div class="modal text-dark" id="modal-{{ project.id }}" tabindex="-1"
           aria-labelledby="modallabel-{{ project.id }}" aria-hidden="true">
           <div class="modal-dialog">
@@ -39,6 +51,7 @@
             </div>
           </div>
         </div>
+        <!-- End of modal for deleting the project -->
         {% endif %}
         <h3 class="text-center">{{ project.content | safe }}</h3>
       </div>
@@ -53,28 +66,32 @@
         
       </div>
     </div>
-    
   </div>
 </div>
+<!-- End of masthead and image for masthead -->
+
+<!-- Comment section -->
 <div class="col-12 card mb-4 mt-3">
   <div class="card-body">
-
+    <!-- Comments counter -->
     <h2>{{ comments.count }} comment{{ comments.count|pluralize }}</h2>
     <hr class="w-25">
-
+    <!-- End of comments counter -->
+    <!-- Comments for loop -->
     {% for comment in comments %}
     <div class="comments p-2 {% cycle 'bg-white' 'bg-dark-subtle' %}">
       <p class="fw-bold">
         <span class="text-muted">
-          <a class="nav-link" href="{% url 'profile_detail' comment.name %}">{{ comment.name }}</a>
+          <a class="text-decoration-none link-comment" href="{% url 'profile_detail' comment.name %}">{{ comment.name | capfirst }} | </a>
           {{ comment.created_on }}
         </span>
       </p>
       {% if comment.name == request.user %}
       <p>
-        <a href="{% url 'comment_edit' comment.id %}">Edit</a> |
-        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-comment-{{ comment.id }}">Delete</a>
+        <a class="link-comment" href="{% url 'comment_edit' comment.id %}">Edit</a> |
+        <a class="link-comment" href="#" data-bs-toggle="modal" data-bs-target="#modal-comment-{{ comment.id }}">Delete</a>
       </p>
+      <!-- Comments delete modal -->
       <div class="modal text-dark" id="modal-comment-{{ comment.id }}" tabindex="-1"
         aria-labelledby="modalcommentlabel-{{ comment.id }}" aria-hidden="true">
         <div class="modal-dialog">
@@ -96,14 +113,17 @@
           </div>
         </div>
       </div>
+      <!-- End of comments delete modal -->
       {% endif %}
       {{ comment.body | linebreaks }}
     </div>
     <hr class="w-100">
     {% endfor %}
+    <!-- End of comments for loop -->
   </div>
 </div>
   {% if user.is_authenticated %}
+  <!-- Comment form -->
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 mb-3">
@@ -116,6 +136,8 @@
     </div>
   </div>
 </div>
+<!-- End of comment form -->
+<!-- If user not logged in view -->
   {% else %}
   <p class="card-text">Please login to comment</p>
   {% endif %}
@@ -125,4 +147,5 @@
 <h1>Please <a class="text-decoration-none" href="{% url 'account_login' %}">Login</a> to see posts</h1>
 </div>
 {% endif %}
+<!-- End of if user not logged in view -->
 {% endblock content %}

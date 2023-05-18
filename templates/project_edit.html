@@ -2,18 +2,23 @@
 
 {% block content%}
 
+
+<!-- Edit project template -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-6 mx-auto">
+            <!-- Form for editing project -->
             <form method="POST" action="{% url 'project_edit' project.id %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-success">Update</button>
                 <a href="{% url 'project_detail' project.id project.slug %}" class="btn btn-danger">Cancel</a>
             </form>
+            <!-- End of form for editing project -->
         </div>
     </div>
 </div>
+<!-- End of edit project template -->
 
 
 {% endblock %}

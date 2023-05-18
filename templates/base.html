@@ -16,7 +16,7 @@
 
 <body>
 
-
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <h1><a class="h1 text-white text-decoration-none" href="{% url 'home' %}">MyPortfolio</a></h1>
@@ -82,7 +82,9 @@
         </div>
 
     </nav>
+    <!-- End of navbar -->
 
+    <!-- Continuation of other templates -->
     {% if messages %}
     <section id="alerts">
         {% for msg in messages %}
@@ -99,8 +101,10 @@
 
         {% endblock content %}
     </main>
+    <!-- End of continuation of other templates -->
 
 
+    <!-- Footer -->
     <footer class="container-fluid bg-dark">
         <div class="d-none d-lg-flex justify-content-between">
             <h2 class="text-white h2">MyPortfolio 2023</h2>
@@ -115,7 +119,10 @@
             </div>
         </div>
     </footer>
+    <!-- End of footer -->
 
+
+    <!-- Bootstrap and font awesome scriptkits -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
         integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous">
     </script>
