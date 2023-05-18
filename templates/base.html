@@ -84,8 +84,9 @@
     </nav>
     <!-- End of navbar -->
 
-    <!-- Continuation of other templates -->
+    <!-- User messages -->
     {% if messages %}
+
     <section id="alerts">
         {% for msg in messages %}
         <aside
@@ -96,7 +97,8 @@
         {% endfor %}
     </section>
     {% endif %}
-    <main class="flex-shrink-0">
+    <!-- Continuation of other templates -->
+    <main class="flex-shrink-0 my-5">
         {% block content %}
 
         {% endblock content %}
