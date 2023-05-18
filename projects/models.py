@@ -12,7 +12,7 @@ class Project(models.Model):
     image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(
-        User, related_name='blog_likes', blank=True)
+        User, related_name='project_likes', blank=True)
     source_code = models.URLField(null=True, blank=True)
     deployed_url = models.URLField(null=False, blank=False)
 
