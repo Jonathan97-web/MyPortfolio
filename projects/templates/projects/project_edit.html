@@ -11,14 +11,14 @@
             <form method="POST" class="form" action="{% url 'project_edit' project.id %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-success">Update</button>
-                <a href="{% url 'project_detail' project.id project.slug %}" class="btn btn-danger">Cancel</a>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success w-25">Update</button>
+                    <a href="{% url 'project_detail' project.id project.slug %}" class="btn btn-danger w-25">Cancel</a>
+                </div>
             </form>
-            <!-- End of form for editing project -->
         </div>
     </div>
 </div>
-<!-- End of edit project template -->
 
 
 {% endblock %}
