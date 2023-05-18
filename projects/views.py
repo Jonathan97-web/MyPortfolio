@@ -13,7 +13,7 @@ class ProjectList(generic.ListView):
     model = Project
     queryset = Project.objects.all().order_by('-created_on')
     template_name = 'index.html'
-    paginate_by = 6
+    paginate_by = 8
 
 
 # Detail project view
@@ -152,7 +152,9 @@ def project_like(request, id, slug):
     project = get_object_or_404(Project, id=id)
     if project.likes.filter(id=request.user.id).exists():
         project.likes.remove(request.user)
+        messages.success(request, "Removed from your Likes")
     else:
         project.likes.add(request.user)
+        messages.success(request, "Added to your Likes")
 
     return redirect('project_detail', project.id, project.slug)
