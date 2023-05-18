@@ -18,7 +18,7 @@ class ProjectList(generic.ListView):
 
 # Detail project view
 def ProjectDetail(request, id, slug):
-    template_name = 'project_detail.html'
+    template_name = 'projects/project_detail.html'
     project = get_object_or_404(Project, id=id)
 
     comments = project.comments.filter(approved=True)
@@ -34,6 +34,7 @@ def ProjectDetail(request, id, slug):
             new_comment.name = request.user
             new_comment.project = project
             new_comment.save()
+            comment_form = CommentForm()
             messages.success(request, 'Comment has been successfully created')
 
     else:
@@ -67,7 +68,7 @@ def CreateProject(request):
         'form': form,
     }
 
-    return render(request, 'project_create.html', context)
+    return render(request, 'projects/project_create.html', context)
 
 
 # Edit project view
@@ -84,7 +85,7 @@ def edit_project(request, id):
             form.instance.developer = request.user
             form.instance.slug = slugify(request.POST.get('title'))
             form.save()
-            messages.success(request, 'project successfully edited')
+            messages.success(request, 'Project successfully edited')
             return redirect('project_detail', project.id, project.slug)
         messages.error(request, 'An error has occured, please try again.')
 
@@ -94,7 +95,7 @@ def edit_project(request, id):
         'project': project,
     }
 
-    return render(request, 'project_edit.html', context)
+    return render(request, 'projects/project_edit.html', context)
 
 
 # Delete project view
@@ -131,7 +132,7 @@ def edit_comment(request, id):
         'comment': comment,
     }
 
-    return render(request, 'comment_edit.html', context)
+    return render(request, 'projects/comment_edit.html', context)
 
 
 # Delete comment view
