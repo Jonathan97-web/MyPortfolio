@@ -12,18 +12,10 @@
             href="{% url 'profile_detail' project.developer %}">{{ project.developer | capfirst }}</a> |
           {{ project.created_on }}
         </p>
-        <!-- Likes form -->
-        <form class="m-4" action="{% url 'project_like' project.id project.slug %}" method="POST"> {{ project.user}}
-          {% csrf_token %}
-          {% if liked %}
-          <button type="submit" name="project_id" value="{{project.id}}" class="btn-like"><i
-              class="fas fa-heart"></i></button> {{ project.number_of_likes }}
-          {% else %}
-          <button type="submit" name="project_id" value="{{project.id}}" class="btn-like"><i
-              class="far fa-heart"></i></button> {{ project.number_of_likes }}
-          {% endif %}
-        </form>
-        <!-- End of likes form -->
+        <!-- Likes/Dislikes -->
+        <a href="{% url 'project_like' project.id project.slug %}" name="project_id" value="{{project.id}}" class="btn-like ms-4"><i class="{% if liked %}fas{% else %}far{% endif %} fa-heart"></i></a>
+        {{ project.number_of_likes }}
+
         <!-- Edit and delete project buttons -->
         {% if project.developer == request.user %}
         <p class="post-subtitle">
@@ -57,7 +49,6 @@
         </div>
         <!-- End of modal for deleting the project -->
         {% endif %}
-        <h3 class="text-center">{{ project.content | safe }}</h3>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
         {% if "placeholder" in project.image.url %}
@@ -73,6 +64,13 @@
   </div>
 </div>
 <!-- End of masthead and image for masthead -->
+<div class="container mt-5">
+<div class="row">
+  <div class="col-12 bg-dark-subtle">
+    <p class="text-center">{{ project.content | safe }}</p>
+  </div>
+</div>
+</div>
 
 <!-- Comment section -->
 <div class="col-12 card mb-4 mt-3">
@@ -132,9 +130,9 @@
 <!-- Comment form -->
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12 mb-3">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-4 mb-3 mx-auto">
       <h3>Leave a comment</h3>
-      <form method="post" class="small">
+      <form method="post" class="small form">
         {% csrf_token %}
         {{ comment_form | crispy }}
         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
