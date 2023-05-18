@@ -1,24 +1,16 @@
 {% extends "base.html" %} {% block content %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags %} {% load static %}
 
 <!-- Profile image -->
-{% if "placeholder" in user.profile.image.url %}
+
 <div class="col-12 col-md-2 d-flex mx-auto">
   <div class="card border shadow m-3">
     <div class="card-body bg-dark rounded-3">
-      <img class="card-img-top img-fluid w-100" src="../static/img/blank_profile.webp" alt="{{ user.profile }}">
+      <img class="card-img-top img-fluid w-100" {% if "placeholder" in user.profile.image.url %}src="{% static 'img/blank_profile.webp' %}"{% else %}src="{{ user.profile.image.url }}"{% endif %}alt="{{ user.profile }}">
     </div>
   </div>
 </div>
-{% else %}
-<div class="col-12 col-md-2 d-flex mx-auto">
-  <div class="card border shadow m-3">
-    <div class="card-body bg-dark rounded-3">
-      <img class="card-img img-fluid w-100 bg-dark " src="{{ user.profile.image.url }}" alt="">
-    </div>
-  </div>
-</div>
-{% endif %}
+
 <!-- End of profile image -->
 
 <!-- User and profile information -->
