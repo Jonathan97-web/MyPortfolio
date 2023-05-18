@@ -7,20 +7,20 @@
 <div class="container-fluid">
     <div class="row">
         {% for project in project_list %}
-        <div class="col-12 col-md-4 mx-auto">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
             <div class="card mt-5">
                 <div class="card-body bg-dark rounded-3">
                     {% if "placeholder" in project.image.url %}
-                    <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top rounded-3"
+                    <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top rounded-3 img-fluid"
                             src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg"
                             alt=""></a>
                     {% else %}
-                    <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top"
+                    <a href="{% url 'project_detail' project.id project.slug %}"><img class="card-img-top rounded-3 img-fluid"
                             src=" {{ project.image.url }}" alt=""></a>
                     {% endif %}
                     <div class="bg-dark rounded-3 image-text d-flex">
-                        <h3 class="author mx-auto"><a class="text-decoration-none h3-dev"
-                                href="{% url 'profile_detail' project.developer %}">Developer:
+                        <h3 class="author mx-auto text-center"><a class="text-decoration-none h3-dev"
+                                href="{% url 'profile_detail' project.developer %}">Developer: <br>
                                 {{ project.developer }}</a></h3>
                     </div>
                 </div>
@@ -34,12 +34,9 @@
                 </div>
             </div>
         </div>
-        {% if forloop.counter|divisibleby:3 %}
-    </div>
-    <div class="row">
-        {% endif %}
         {% endfor %}
     </div>
+
     <!-- End of project for loop with generation of project lists -->
     <!-- Pagination of project lists -->
     {% if is_paginated %}
