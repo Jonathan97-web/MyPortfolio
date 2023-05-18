@@ -23,12 +23,10 @@ def profile(request, id):
             u_form.save()
             p_form.save()
             return redirect('profile', id)
-            # next = request.POST.get('next', '/profile/1')
-            # return HttpResponseRedirect(next)
     else:
         u_form = UpdateUserForm(instance=request.user)
         p_form = UpdateProfileForm(instance=request.user.profile)
- 
+
     projects = Project.objects.filter(developer=request.user)
 
     context = {
@@ -39,9 +37,8 @@ def profile(request, id):
 
     return render(request, 'profile.html', context)
 
-# View profile
 
-
+# View others profiles
 def view_profile(request, username):
     user = get_object_or_404(User, username=username)
     projects = Project.objects.filter(developer=user)
@@ -52,7 +49,7 @@ def view_profile(request, username):
     return render(request, 'profile_detail.html', context)
 
 
-# Create Profile When New User Signs Up
+# Create profile when new user signs up
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
