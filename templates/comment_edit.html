@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form method="POST" action="{% url 'comment_edit' comment.id %}">
+            <form method="POST" action="{% url 'comment_edit' comment.id %}" class="form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-success">Update</button>

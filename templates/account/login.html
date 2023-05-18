@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 mt-8 mt-3">
+        <div class="col-12 col-md-8 col-lg-6 mt-3 mx-auto">
             <h3>{% trans "Sign In" %}</h3>
             <p>{% blocktrans with site.name as site_name %}Welcome back to MyPortfolio,
                 a website where you can share your portfolio with future employers or get feedback from
@@ -17,10 +17,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 mt-3">
+        <div class="col-12 col-md-8 col-lg-6 mt-3 mx-auto">
             <p>{% blocktrans %}If you have not created an account yet, then please
                 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-            <form class="login" method="POST" action="{% url 'account_login' %}">
+            <form class="login form" method="POST" action="{% url 'account_login' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 {% if redirect_field_value %}
