@@ -22,6 +22,7 @@ def profile(request, id):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
+            messages.success(request, "Profile successfully updated")
             return redirect('profile', id)
     else:
         u_form = UpdateUserForm(instance=request.user)
@@ -35,7 +36,7 @@ def profile(request, id):
         'projects': projects,
     }
 
-    return render(request, 'profile.html', context)
+    return render(request, 'profiles/profile.html', context)
 
 
 # View others profiles
@@ -46,7 +47,7 @@ def view_profile(request, username):
         'user': user,
         'projects': projects,
     }
-    return render(request, 'profile_detail.html', context)
+    return render(request, 'profiles/profile_detail.html', context)
 
 
 # Create profile when new user signs up
