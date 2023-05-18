@@ -6,8 +6,9 @@
 <!-- Create project template -->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-md-6 mx-auto">
-            <form method="POST" action="{% url 'project_create' %}">
+        <div class="col-12 col-md-6 mx-auto m-5">
+            <h1>Create a project post</h1>
+            <form class="w-100" method="POST" action="{% url 'project_create' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-success">Submit</button>
