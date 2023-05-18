@@ -23,7 +23,6 @@
           <a class="link-comment-white" href="#" data-bs-toggle="modal"
             data-bs-target="#modal-{{ project.id }}">Delete</a>
         </p>
-        <!-- End of edit and delete project buttons -->
         <!-- Modal for deleting the project -->
         <div class="modal text-dark" id="modal-{{ project.id }}" tabindex="-1"
           aria-labelledby="modallabel-{{ project.id }}" aria-hidden="true">
@@ -47,7 +46,6 @@
             </div>
           </div>
         </div>
-        <!-- End of modal for deleting the project -->
         {% endif %}
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
@@ -63,12 +61,12 @@
     </div>
   </div>
 </div>
-<!-- End of masthead and image for masthead -->
-<div class="container mt-5">
-<div class="row">
+
+<!-- Project content -->
+<div class="container mt-1">
   <div class="col-12 bg-dark-subtle">
-    <p class="text-center">{{ project.content | safe }}</p>
-  </div>
+    <p class="text-center masthead-text p-content p-2"> <strong>{{ project.content  }}</strong> </p>
+
 </div>
 </div>
 
@@ -78,7 +76,6 @@
     <!-- Comments counter -->
     <h2>{{ comments.count }} comment{{ comments.count|pluralize }}</h2>
     <hr class="w-25">
-    <!-- End of comments counter -->
     <!-- Comments for loop -->
     {% for comment in comments %}
     <div class="comments p-2 {% cycle 'bg-white' 'bg-dark-subtle' %}">
@@ -117,13 +114,11 @@
           </div>
         </div>
       </div>
-      <!-- End of comments delete modal -->
       {% endif %}
       {{ comment.body | linebreaks }}
     </div>
     <hr class="w-100">
     {% endfor %}
-    <!-- End of comments for loop -->
   </div>
 </div>
 {% if user.is_authenticated %}
@@ -140,7 +135,6 @@
     </div>
   </div>
 </div>
-<!-- End of comment form -->
 <!-- If user not logged in view -->
 {% else %}
 <p class="card-text">Please login to comment</p>
@@ -151,5 +145,4 @@
   <h1>Please <a class="text-decoration-none" href="{% url 'account_login' %}">Login</a> to see posts</h1>
 </div>
 {% endif %}
-<!-- End of if user not logged in view -->
 {% endblock content %}
