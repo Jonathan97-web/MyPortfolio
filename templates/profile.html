@@ -3,10 +3,10 @@
 
 <!-- Profile image -->
 
-<div class="col-12 col-md-2 d-flex mx-auto">
+<div class="col-12 col-md-6 col-lg-4 mx-auto">
   <div class="card border shadow m-3">
     <div class="card-body bg-dark rounded-3">
-      <img class="card-img-top img-fluid w-100" {% if "placeholder" in user.profile.image.url %}src="{% static 'img/blank_profile.webp' %}"{% else %}src="{{ user.profile.image.url }}"{% endif %}alt="{{ user.profile }}">
+      <img class="card-img img-fluid w-100" {% if "placeholder" in user.profile.image.url %}src="{% static 'img/blank_profile.webp' %}"{% else %}src="{{ user.profile.image.url }}"{% endif %}alt="{{ user.profile }}">
     </div>
   </div>
 </div>
@@ -15,12 +15,12 @@
 
 <!-- User and profile information -->
 <div class="container">
-  <div class="row mx-auto">
-    <div class="col-12 d-flex flex-column">
+  <div class="row">
+    <div class="col-12 col-md-8 col-lg-6 d-flex flex-column mx-auto">
       <legend class="border-bottom mb-4 mt-2 border-top text-center">{{ user.username|capfirst }}'s information</legend>
       <p class="text-center">Name : {{ user.profile.first_name }} {{ user.profile.last_name }}</p>
       <p class="text-center">Email: {{ user.email }}</p>
-      <form class="text-center" method="POST" enctype="multipart/form-data">
+      <form class="text-center form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ u_form | crispy }}
         <legend class="border-bottom mb-4 text-center">Profile information:</legend>
