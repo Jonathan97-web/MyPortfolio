@@ -20,6 +20,21 @@ body > footer {
     color: red;
 }
 
+.link-comment {
+    color: #4A4A4F;
+}
+
+.link-comment:hover {
+    color: red;
+}
+
+.link-comment-white {
+    color: white;
+}
+
+.link-comment-white:hover {
+    color: red;
+}
 
 .brand {
     font-family: Lato, sans-serif;
@@ -39,11 +54,6 @@ body > footer {
 .thin {
     font-weight: 300;
 }
-
-.light-bg {
-    background-color: #fff;
-}
-
 .dark-bg {
     background-color: #445261;
 }
@@ -67,9 +77,6 @@ body > footer {
 
 .masthead {
     margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
     width: 100%;
 }
 
