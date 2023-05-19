@@ -54,6 +54,7 @@ Link here:
 - As a returning site user, I would like to modify my profile, so that I can change information if updated.
 - As a returning site user, I would like to view other users posts, so that I can see updates on the website.
 - As a returning site user, I would like to see others profiles, so that I can check on updates they made.
+- As a returning site user, I would like to be able to like posts, so that I can show endorsement to other peoples work.
 
 ### Site Admin
 
@@ -142,6 +143,20 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 ![screenshot](documentation/images/feature-unliked.png)
 ![screenshot](documentation/images/feature-liked.png)
+
+- **Sign up page**
+
+    - A user can sign up as a user to be able to access all the functions of the website.
+
+![screenshot](documentation/images/user-story-sign-up1.png)
+![screenshot](documentation/images/user-story-sign-up2.png)
+
+**Create a Project Post**
+
+    - A user can create a project post that all other users can see, like and comment.
+
+![screenshot](documentation/images/feature-create-project-post.png)
+![screenshot](documentation/images/feature-create-project-post1.png)
 
 ### Future Features
 
