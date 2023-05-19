@@ -10,12 +10,13 @@ MyPortfolio is a social media page where you can share your portfolio's with fut
 
 ## UX
 
-I wanted to create a website that is clean and easy to use, there are many websites out there that focus to much on cluttering the website with a ton of different colors and a ton of different function.  
+I wanted to create a website that is clean and easy to use, there are many websites out there that focus to much on cluttering the website with a ton of different colors and a ton of different functions.  
 With MyPortfolio you will get a clean and easy to use experience.
 
 ### Colour Scheme
 
-I used primarily bootstrap's implemented class colors when creating my project.
+I used primarily bootstrap's implemented class colors when creating my project.  
+Link: [Bootstrap colors](https://getbootstrap.com/docs/5.2/utilities/colors/)
 
 
 - `#212429` used for primary text and card backgrounds on front page.
