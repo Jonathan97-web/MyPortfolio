@@ -19,7 +19,7 @@ Because of CRUD I have used direct input from source code on the ones that neede
 | --- | --- | --- | --- |
 | Home | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmyportfoliopp4.herokuapp.com%2F) | ![screenshot](documentation/images/validation-home.png) | Pass: No Errors / info trailing slashes |
 | Sign up | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmyportfoliopp4.herokuapp.com%2Faccounts%2Fsignup%2F) | ![screenshot](documentation/images/validation-signup.png) | Pass: No Errors  |
-| Sign in | [W3C](https://myportfoliopp4.herokuapp.com/accounts/login/) | ![screenshot](documentation/images/validation-signin.png) | Pass: No Errors |
+| Sign in | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmyportfoliopp4.herokuapp.com%2Faccounts%2Flogin%2F) | ![screenshot](documentation/images/validation-signin.png) | Pass: No Errors |
 | Sign out | n/a | ![screenshot](documentation/images/validation-signout.png) | Warning because double h1's from base.html |
 | Profile Detail | n/a | ![screenshot](documentation/images/validation-profile.png) | Pass: No Errors |
 | My Profile | n/a | ![screenshot](documentation/images/validation-myprofile.png) | Pass: No Errors |
@@ -46,9 +46,9 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | File | CI URL | Screenshot | Notes |
 | --- | --- | --- | --- |
 | main/views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/Jonathan97-web/MyPortfolio/main/main/views.py) | ![screenshot](documentation/images/validation-python-main-views.png) | All clear, no errors found |
-| main/settings.py | n/a | ![screenshot](documentation/images/validation-python-settings.py.png) | All clear, no errors found |
+| main/settings.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/Jonathan97-web/MyPortfolio/main/main/settings.py) | ![screenshot](documentation/images/validation-python-settings.py.png) | All clear, no errors found |
 |  profiles/views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/Jonathan97-web/MyPortfolio/main/profiles/views.py) | ![screenshot](documentation/images/validation-python-profiles-views.png) | All clear, no errors found |
-| profiles/models.py | n/a | ![screenshot](documentation/images/validation-python-profiles.models.png) | All clear, no errors found |
+| profiles/models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/Jonathan97-web/MyPortfolio/main/profiles/models.py) | ![screenshot](documentation/images/validation-python-profiles.models.png) | All clear, no errors found |
 | projects/views.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/Jonathan97-web/MyPortfolio/main/projects/views.py) | ![screenshot](documentation/images/validation-python-projects-views.png) | All clear, no errors found |
 | projects/models.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/Jonathan97-web/MyPortfolio/main/projects/models.py) | ![screenshot](documentation/images/validation-python-projects-models.png) | All clear, no errors found |
 | main/urls.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/Jonathan97-web/MyPortfolio/main/main/urls.py) | ![screenshot](documentation/images/validation-python-main-urls.png) | All clear, no errors found |
@@ -158,7 +158,6 @@ from the respective feature.
 | As a site administrator, I should be able to access the administration panel, so that I can overview the website. | ![screenshot](documentation/images/user-story-admin.png) |
 | - As a site administrator, I should be able to delete projects and comments, so that I can moderate the website.  | ![screenshot](documentation/images/user-story-admin-comment-edit.png) ![screenshot](documentation/images/user-story-admin-comment-edit1.png) ![screenshot](documentation/images/user-story-admin-project-edit.png) ![screenshot](documentation/images/user-story-admin-project-edit1.png) |
 | - As a site administrator, I should be able to see profiles, so that I can moderate the profiles. | ![screenshot](documentation/images/user-story-admin-profile-edit.png) ![screenshot](documentation/images/user-story-admin-profile-edit1.png) |
-|
 
 ## Bugs
 

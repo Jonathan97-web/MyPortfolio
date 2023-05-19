@@ -154,7 +154,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 **Create a Project Post**
 
-    - A user can create a project post that all other users can see, like and comment.
+- A user can create a project post that all other users can see, like and comment.
 
 ![screenshot](documentation/images/feature-create-project-post.png)
 ![screenshot](documentation/images/feature-create-project-post1.png)
@@ -190,6 +190,8 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 Entity Relationship Diagrams (ERD) help to visualize database architecture before creating models.
 Understanding the relationships between different tables can save time later in the project.
 
+**Project Model**
+
 ```python
 class Project(models.Model):
     title = models.CharField(max_length=100, unique=True)
@@ -211,6 +213,46 @@ class Project(models.Model):
         return self.likes.count()
 ```
 
+**Profile Model**
+```python
+class Profile(models.Model):
+    first_name = models.CharField(max_length=50, null=False, blank=False)
+    last_name = models.CharField(max_length=50, null=False, blank=False)
+    followers = models.ManyToManyField(
+        "self",
+        related_name="followed_by",
+        symmetrical=False,
+        blank=True
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    intro = models.CharField(max_length=100, null=True, blank=True)
+    image = CloudinaryField('image', default='placeholder')
+    linkedin = models.URLField(null=True, blank=True)
+    github = models.URLField(null=True, blank=True)
+    portfolio = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+```
+**Comment Model**
+```python
+class Comment(models.Model):
+
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name='comments')
+    name = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='author')
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
+```
+
 
 I made a ERD from Lucidchart and I also generated one using Graphviz.
 
@@ -218,20 +260,6 @@ I made a ERD from Lucidchart and I also generated one using Graphviz.
 ![screenshot](documentation/images/ERD.png)
 ![screenshot](documentation/images/ERD2.png)
 
-
-- **Project Model:**
-
-    | **PK** | **id** (unique) | Type | Notes |
-    | --- | --- | --- | --- |
-    | **FK** | category | ForeignKey | FK to **Category** model |
-    | | title | CharField | |
-    | | slug | SlugField | |
-    | | developer | ForeignKey | |
-    | | image | CloudinaryField | |
-    | | created_on | DateTimeField | |
-    | | likes | ManyToManyField | |
-    | | source_code | URLField | |
-    | | deployed_url | URLField | |
 
 ## Agile Development Process
 
