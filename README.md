@@ -173,7 +173,6 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 - [HTML](https://en.wikipedia.org/wiki/HTML) used for the main site content.
 - [CSS](https://en.wikipedia.org/wiki/CSS) used for the main site design and layout.
 - [CSS Flexbox](https://www.w3schools.com/css/css3_flexbox.asp) used for an enhanced responsive layout.
-- [CSS Grid](https://www.w3schools.com/css/css_grid.asp) used for an enhanced responsive layout.
 - [Python](https://www.python.org) used as the back-end programming language.
 - [Git](https://git-scm.com) used for version control. (`git add`, `git commit`, `git push`)
 - [GitHub](https://github.com) used for secure online code storage.
@@ -184,7 +183,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 - [ElephantSQL](https://www.elephantsql.com) used as the Postgres database.
 - [Heroku](https://www.heroku.com) used for hosting the deployed back-end site.
 - [Cloudinary](https://cloudinary.com) used for online static file storage.
-
+- [Lucidchart](https://www.lucidchart.com) used to create the ERD flowchart.
 ## Database Design
 
 Entity Relationship Diagrams (ERD) help to visualize database architecture before creating models.
@@ -418,16 +417,14 @@ In the project I used the comment and likes view from Code Institute's blog appl
 | --- | --- | --- |
 | [Markdown Builder](https://traveltimn.github.io/markdown-builder) | README and TESTING | tool to help generate the Markdown files |
 | [Chris Beams](https://chris.beams.io/posts/git-commit) | version control | "How to Write a Git Commit Message" |
-
+| [Bootstrap](https://getbootstrap.com/) | Framework | Documentation to make the CSS possible |
 ### Media
-
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 | Source | Location | Type | Notes |
 | --- | --- | --- | --- |
 | [Favicon](https://www.favicon.io) | entire site | image | favicon on all pages |
 | [Pixabay](https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/) | Placeholder profile picture |  image | Placeholder for profile picture |
+| [Myself](https://www.github.com/Jonathan97-web) | project placeholder images | image | Made the images for the project placeholders in Photoshop
 
 ### Acknowledgements
 
