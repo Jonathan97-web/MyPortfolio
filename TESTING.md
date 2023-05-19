@@ -163,19 +163,17 @@ from the respective feature.
 
 - Python `E501 line too long` (93 > 79 characters)
 
-    - On several locations I have had this bug, 
+    - On several locations I have had this bug,
+
 ```python
 path(
-        'project_delete/<int:id>',
-        views.delete_project, name='project_delete'),
+    'project_delete/<int:id>',
+    views.delete_project, name='project_delete'),
 ```
-
 
 - To fix this, I pressed enter to cut the line into 3 pieces if necessary, if you have brackets you can do this at the start of the opening brackets to format the code like the above example.
 
-
-
-- Django NoReverseMatch at /
+- Django `NoReverseMatch at /`
 
 ![screenshot](documentation/images/bugs-1.png)
 
@@ -184,8 +182,7 @@ path(
 
 ## Unfixed Bugs
 
-As of writing this there are no more bugs that I am aware off.
-
+As of writing this, there are no more bugs that I am aware of.
 
 ## GitHub Issues
 
@@ -193,7 +190,7 @@ As of writing this there are no more bugs that I am aware off.
 
 Any remaining open issues can be tracked [here](https://github.com/Jonathan97-web/MyPortfolio/issues).
 
-| Bug | Status |
+| User Story | Status |
 | --- | --- |
 | [#18 Share profiles](https://github.com/Jonathan97-web/MyPortfolio/issues/18) | Open |
 | [#14 Share post](https://github.com/Jonathan97-web/MyPortfolio/issues/14) | Open |
