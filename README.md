@@ -226,7 +226,7 @@ I made a ERD from Lucidchart and I also generated one using Graphviz.
 
 Through it, user stories, issues, and milestone tasks were planned, then tracked on a weekly basis using the basic Kanban board.
 
-![screenshot](documentation/gh-projects.png)
+![screenshot](documentation/images/project-board.png)
 
 ### GitHub Issues
 
@@ -238,11 +238,11 @@ It also helped with milestone iterations on a weekly basis.
 
 - [Open Issues](https://github.com/Jonathan97-web/MyPortfolio/issues)
 
-    ![screenshot](documentation/gh-issues-open.png)
+    ![screenshot](documentation/images/project-open-issues.png)
 
 - [Closed Issues](https://github.com/Jonathan97-web/MyPortfolio/issues?q=is%3Aissue+is%3Aclosed)
 
-    ![screenshot](documentation/gh-issues-closed.png)
+    ![screenshot](documentation/images/project-closed-issues.png)
 
 ### MoSCoW Prioritization
 
@@ -403,9 +403,6 @@ In the project I used the comment and likes view from Code Institute's blog appl
 | --- | --- | --- |
 | [Markdown Builder](https://traveltimn.github.io/markdown-builder) | README and TESTING | tool to help generate the Markdown files |
 | [Chris Beams](https://chris.beams.io/posts/git-commit) | version control | "How to Write a Git Commit Message" |
-| [Flexbox Froggy](https://flexboxfroggy.com/) | entire site | modern responsive layouts |
-| [Grid Garden](https://cssgridgarden.com) | entire site | modern responsive layouts |
-| [WhiteNoise](http://whitenoise.evans.io) | entire site | hosting static files on Heroku temporarily |
 
 ### Media
 
@@ -415,7 +412,7 @@ In the project I used the comment and likes view from Code Institute's blog appl
 | Source | Location | Type | Notes |
 | --- | --- | --- | --- |
 | [Favicon](https://www.favicon.io) | entire site | image | favicon on all pages |
-| [Unsplash](https://unsplash.com) | product page | image | sample of fake products |
+| [Pixabay](https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/) | Placeholder profile picture |  image | Placeholder for profile picture |
 
 ### Acknowledgements
 
