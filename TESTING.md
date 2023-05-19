@@ -161,12 +161,6 @@ from the respective feature.
 
 ## Bugs
 
-
-It's very important to document any bugs you've discovered while developing the project.
-Make sure to include any necessary steps you've implemented to fix the bug(s) as well.
-
-For JavaScript and Python applications, it's best to screenshot the errors to include them as well.
-
 - Python `E501 line too long` (93 > 79 characters)
 
     - On several locations I have had this bug, 
@@ -191,3 +185,24 @@ path(
 ## Unfixed Bugs
 
 As of writing this there are no more bugs that I am aware off.
+
+
+## GitHub Issues
+
+### **Open Issues**
+
+Any remaining open issues can be tracked [here](https://github.com/Jonathan97-web/MyPortfolio/issues).
+
+| Bug | Status |
+| --- | --- |
+| [#18 Share profiles](https://github.com/Jonathan97-web/MyPortfolio/issues/18) | Open |
+| [#14 Share post](https://github.com/Jonathan97-web/MyPortfolio/issues/14) | Open |
+| [#3 Approve comments](https://github.com/Jonathan97-web/MyPortfolio/issues/3) | Open |
+
+![screenshot](documentation/images/project-open-issues.png)
+
+### **Closed Issues**
+
+All finalised issues are closed and can be tracked [here](https://github.com/Jonathan97-web/MyPortfolio/issues?q=is%3Aissue+is%3Aclosed)
+
+![screenshot](documentation/images/project-closed-issues.png)
