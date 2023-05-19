@@ -419,6 +419,7 @@ In the project I used the comment and likes view from Code Institute's blog appl
 | [Markdown Builder](https://traveltimn.github.io/markdown-builder) | README and TESTING | tool to help generate the Markdown files |
 | [Chris Beams](https://chris.beams.io/posts/git-commit) | version control | "How to Write a Git Commit Message" |
 | [Bootstrap](https://getbootstrap.com/) | Framework | Documentation to make the CSS possible |
+| [Codey Schafer](https://github.com/CoreyMSchafer/code_snippets/blob/master/Django_Blog/11-Pagination/django_project/users/signals.py) | Code Snippet | Create user profile when user is created
 ### Media
 
 | Source | Location | Type | Notes |
