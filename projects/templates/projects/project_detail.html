@@ -13,7 +13,7 @@
           {{ project.created_on }}
         </p>
         <!-- Likes/Dislikes -->
-        <a href="{% url 'project_like' project.id project.slug %}" name="project_id" value="{{project.id}}" class="btn-like ms-4"><i class="{% if liked %}fas{% else %}far{% endif %} fa-heart"></i></a>
+        <a href="{% url 'project_like' project.id project.slug %}" id="{{project.id}}" class="btn-like ms-4"><i class="{% if liked %}fas{% else %}far{% endif %} fa-heart"></i></a>
         {{ project.number_of_likes }}
 
         <!-- Edit and delete project buttons -->
@@ -50,11 +50,11 @@
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
         {% if "placeholder" in project.image.url %}
-        <img class="img-fluid"
+        <img class="img-fluid img-masthead"
           src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg"
-          width="100%">
+           alt="Black background with the text MyPortfolio.">
         {% else %}
-        <img class="img-fluid" src=" {{ project.image.url }}" width="100%">
+        <img class="img-fluid" src=" {{ project.image.url }}">
         {% endif %}
 
       </div>
