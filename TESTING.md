@@ -92,30 +92,19 @@ Mostly SEO warnings due to not having a meta description since it's in the base 
 | Home | Desktop | ![screenshot](documentation/images/lighthouse-desktop-home.png) | Some minor warnings |
 | My Profile | Mobile | ![screenshot](documentation/images/lighthouse-mobile-my-profile.png) | Some minor warnings |
 | My Profile | Desktop | ![screenshot](documentation/images/lighthouse-desktop-my-profile.png) | Few warnings |
-| Sign in | Mobile | ![screenshot](documentation/images/lighthouse-mobile-login.png) | Slow response time due to large images |
-| Sign in | Desktop | ![screenshot](documentation/images/lighthouse-desktop-login.png) | Slow response time due to large images |
-| Sign up | Mobile | ![screenshot](documentation/images/lighthouse-mobile-signup.png) | Slow response time due to large images |
-| Sign up | Desktop | ![screenshot](documentation/images/lighthouse-desktop-signup.png) | Slow response time due to large images |
-| Edit comment | Mobile | ![screenshot](documentation/images/lighthouse-mobile-edit-comment.png) | Slow response time due to large images |
-| Edit comment | Desktop | ![screenshot](documentation/images/lighthouse-desktop-edit-comment.png) | Slow response time due to large images |
-| Edit project | Mobile | ![screenshot](documentation/images/lighthouse-mobile-edit-project.png) | Slow response time due to large images |
-| Edit project | Desktop | ![screenshot](documentation/images/lighthouse-desktop-edit-project.png) | Slow response time due to large images |
-| Create project | Mobile | ![screenshot](documentation/images/lighthouse-mobile-create-project.png) | Slow response time due to large images |
-| Create project | Desktop | ![screenshot](documentation/images/lighthouse-desktop-create-project.png) | Slow response time due to large images |
+| Sign in | Mobile | ![screenshot](documentation/images/lighthouse-mobile-login.png) | Some minor warnings |
+| Sign in | Desktop | ![screenshot](documentation/images/lighthouse-desktop-login.png) | Some minor warnings |
+| Sign up | Mobile | ![screenshot](documentation/images/lighthouse-mobile-signup.png) | Some minor warnings |
+| Sign up | Desktop | ![screenshot](documentation/images/lighthouse-desktop-signup.png) | Some minor warnings |
+| Edit comment | Mobile | ![screenshot](documentation/images/lighthouse-mobile-edit-comment.png) | Some minor warnings |
+| Edit comment | Desktop | ![screenshot](documentation/images/lighthouse-desktop-edit-comment.png) | Some minor warnings |
+| Edit project | Mobile | ![screenshot](documentation/images/lighthouse-mobile-edit-project.png) | Some minor warnings |
+| Edit project | Desktop | ![screenshot](documentation/images/lighthouse-desktop-edit-project.png) | Some minor warnings |
+| Create project | Mobile | ![screenshot](documentation/images/lighthouse-mobile-create-project.png) | Some minor warnings |
+| Create project | Desktop | ![screenshot](documentation/images/lighthouse-desktop-create-project.png) | Some minor warnings |
 
 
 ## Defensive Programming
-
-Forms:
-- Users cannot submit an empty form
-- Users must enter valid email addresses
-
-Flask/Django:
-- Users cannot brute-force a URL to navigate to a restricted page
-- Users cannot perform CRUD functionality while logged-out
-- User-A should not be able to manipulate data belonging to User-B, or vice versa
-- Non-Authenticated users should not be able to access pages that require authentication
-- Standard users should not be able to access pages intended for superusers
 
 Defensive programming was manually tested with the below user acceptance testing:
 
