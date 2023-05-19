@@ -19,6 +19,10 @@ body > footer {
     word-wrap: break-word;
 }
 
+.img-masthead {
+    width: 100%;
+}
+
 
 
 .h3-dev {
