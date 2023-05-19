@@ -11,9 +11,17 @@
         <p class="post-subtitle"><a class=" link-comment-white text-decoration-none"
             href="{% url 'profile_detail' project.developer %}">{{ project.developer | capfirst }}</a> |
           {{ project.created_on }}
-        </p>
+        </p>  
+        <!-- Deployed url and source code buttons -->
+        <div class="m-3">
+            <a href="{{ project.deployed_url }}" target="_blank" rel="nofollow" class="btn btn-success">Deployed URL</a>
+          {% if project.source_code %}
+            <a href="{{ project.source_code }}" target="_blank" rel="nofollow" class="btn btn-primary">Source Code</a>
+          {% endif %}
+        </div>
         <!-- Likes/Dislikes -->
-        <a href="{% url 'project_like' project.id project.slug %}" id="{{project.id}}" class="btn-like ms-4"><i class="{% if liked %}fas{% else %}far{% endif %} fa-heart"></i></a>
+        <a href="{% url 'project_like' project.id project.slug %}" id="{{project.id}}" class="btn-like ms-4"><i
+            class="{% if liked %}fas{% else %}far{% endif %} fa-heart"></i></a>
         {{ project.number_of_likes }}
 
         <!-- Edit and delete project buttons -->
@@ -24,8 +32,8 @@
             data-bs-target="#modal-{{ project.id }}">Delete</a>
         </p>
         <!-- Modal for deleting the project -->
-        <div class="modal text-dark" id="modal-{{ project.id }}" tabindex="-1"
-          aria-label="modallabel-{{ project.id }}" aria-hidden="true">
+        <div class="modal text-dark" id="modal-{{ project.id }}" tabindex="-1" aria-label="modallabel-{{ project.id }}"
+          aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -52,7 +60,7 @@
         {% if "placeholder" in project.image.url %}
         <img class="img-fluid img-masthead"
           src="https://res.cloudinary.com/dljlkuktp/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1684335041/MyPortfolio-masthead_bttlvb.jpg"
-           alt="Black background with the text MyPortfolio.">
+          alt="Black background with the text MyPortfolio.">
         {% else %}
         <img class="img-fluid" src=" {{ project.image.url }}" alt="{{ project.title }}">
         {% endif %}
@@ -63,12 +71,12 @@
 </div>
 
 <!-- Project content -->
-<div class="container mt-1">
-  <div class="col-12 bg-dark-subtle">
-    <p class="text-center masthead-text p-content p-2"> <strong>{{ project.content  }}</strong> </p>
+<div class="container-fluid mt-1">
+  <div class="row">
+    <div class="col-12 col-md-6 mx-auto">
+      <p class="text-center masthead-text p-content p-2"> <strong>{{ project.content }}</strong> </p>
+    </div>
 
-</div>
-</div>
 
 <!-- Comment section -->
 <div class="col-12 card mb-4 mt-3">
